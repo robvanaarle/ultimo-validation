@@ -18,7 +18,7 @@
         	"url": "https://github.com/robvanaarle/ultimo-translate"
       	}
     ],
-    "require": {
+    "suggest": {
         "robvanaarle/ultimo-translate": "Allows integration with Ultimo Translate for translation of error messages"
     },
     "autoload": {
