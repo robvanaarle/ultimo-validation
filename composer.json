@@ -1,0 +1,30 @@
+{
+    "name": "robvanaarle/ultimo-validation",
+    "description": "Extensible validation library",
+    "type": "library",
+    "keywords": [
+        "validation",
+        "extendable"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+	  		{
+	    	  "name": "Rob van Aarle"
+	  		}
+	  ],
+    "repositories": [
+      	{
+        	"type": "vcs",
+        	"url": "https://github.com/robvanaarle/ultimo-translate"
+      	}
+    ],
+    "require": {
+        "robvanaarle/ultimo-translate": "Allows integration with Ultimo Translate for translation of error messages"
+    },
+    "autoload": {
+    		"psr-4": {
+       			"ultimo\\": "src/ultimo/"
+    		}
+  }
+}
+
