@@ -18,6 +18,9 @@
         	"url": "https://github.com/robvanaarle/ultimo-translate"
       	}
     ],
+    "require-dev": {
+	  		"phpunit/phpunit": "3.7.*"
+	  },
     "suggest": {
         "robvanaarle/ultimo-translate": "Allows integration with Ultimo Translate for translation of error messages"
     },
