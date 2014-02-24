@@ -6,7 +6,6 @@ abstract class Validator {
   private $defaultMessage = null;
   private $errors = array();
   private $variables = array();
-  private $translator = null;
   
   public function isValid($value) {
     $this->variables = array('value' => $value);

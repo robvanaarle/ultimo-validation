@@ -6,7 +6,7 @@ class Callback extends \ultimo\validation\Validator {
   private $function;
   private $args;
   
-  public function __construct($function, $args=array()) {
+  public function __construct($function, array $args=array()) {
     $this->function = $function;
     $this->args = $args;
   }
