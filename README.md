@@ -1,5 +1,6 @@
 # Ultimo Validation
 [![Build Status](https://travis-ci.org/robvanaarle/ultimo-validation.svg?branch=master)](https://travis-ci.org/robvanaarle/ultimo-validation)
+[![Test Coverage](https://lima.codeclimate.com/github/robvanaarle/ultimo-validation/badges/coverage.svg)](https://lima.codeclimate.com/github/robvanaarle/ultimo-validation/coverage)
 
 Extensible validation library
 

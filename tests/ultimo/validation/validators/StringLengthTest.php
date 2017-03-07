@@ -10,6 +10,14 @@ class StringLengthTest extends \PHPUnit_Framework_TestCase {
     $this->validator = new StringLength(3, 6);
   }
   
+  public function testGetMinIsSetMin() {
+    $this->assertEquals(3, $this->validator->getMin());
+  }
+  
+  public function testGetMaxIsSetMax() {
+    $this->assertEquals(6, $this->validator->getMax());
+  }
+  
   public function testEmptyStringIsInvalid() {
     $this->assertFalse($this->validator->isValid(''));
     $this->assertSame(array(StringLength::TOO_SHORT), $this->validator->getErrors());
