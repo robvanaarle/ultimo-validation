@@ -1,4 +1,5 @@
 # Ultimo Validation
+[![Build Status](https://travis-ci.org/robvanaarle/ultimo-validation.svg?branch=master)](https://travis-ci.org/robvanaarle/ultimo-validation)
 Extensible validation library
 
 Allows validations to be chained. Several validators are supplied. Translation of validation messages is supported and this can be linked to Ultimo Translate.
