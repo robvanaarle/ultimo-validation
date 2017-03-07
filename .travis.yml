@@ -5,5 +5,4 @@ before_script:
 script:
   - vendor/bin/phpunit
 after_success:
-  - CODECLIMATE_REPO_TOKEN=48d411f3a46465166081f985915d4e7c74f031a1f382b8104aa987806beff9e9
-  - vendor/bin/test-reporter
+  - CODECLIMATE_REPO_TOKEN="48d411f3a46465166081f985915d4e7c74f031a1f382b8104aa987806beff9e9" vendor/bin/test-reporter
