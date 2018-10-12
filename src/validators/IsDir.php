@@ -3,9 +3,9 @@
 namespace ultimo\validation\validators;
 
 class IsDir extends \ultimo\validation\Validator {
-  const NOT_A_DIR = 'not_a_dir';
+  public const NOT_A_DIR = 'not_a_dir';
   
-  protected function valueIsValid($value) {
+  protected function valueIsValid($value): bool {
     if (!is_dir($value)) {
       $this->addError(self::NOT_A_DIR);
       return false;

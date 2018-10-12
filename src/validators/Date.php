@@ -3,16 +3,16 @@
 namespace ultimo\validation\validators;
 
 class Date extends \ultimo\validation\Validator {
-  const INVALID_DATE = 'invalid_date';
+  public const INVALID_DATE = 'invalid_date';
   
   protected $format;
   
-  public function __construct($format) {
+  public function __construct(string $format) {
     $this->format = $format;
   }
   
-  protected function phpFormatToReadableFormat($format) {
-    $table = array(
+  protected function phpFormatToReadableFormat(string $format): string {
+    $table = [
      'y' => 'yy',
      'Y' => 'yyyy',
      'm' => 'mm',
@@ -25,12 +25,12 @@ class Date extends \ultimo\validation\Validator {
      's' => 'ss',
      'a' => 'am',
      'A' => 'AM'
-    );
+    ];
     
     return str_replace(array_keys($table), $table, $format);
   }
   
-  protected function valueIsValid($value) {
+  protected function valueIsValid($value): bool {
     $this->setVariable('format', $this->phpFormatToReadableFormat($this->format));
     
     $dateTime = \DateTime::createFromFormat($this->format, $value);

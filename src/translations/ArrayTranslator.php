@@ -6,7 +6,7 @@ abstract class ArrayTranslator implements \ultimo\validation\Translator {
   
   static protected $translations = array();
   
-  public function getValidationMessage(\ultimo\validation\Validator $validator, $error, array $variables) {
+  public function getValidationMessage(\ultimo\validation\Validator $validator, string $error, array $variables) {
     $key = strtolower(str_replace('\\', '.', get_class($validator))) . '.' . $error;
  
     if (!array_key_exists($key, static::$translations)) {

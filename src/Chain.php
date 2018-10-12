@@ -3,22 +3,22 @@
 namespace ultimo\validation;
 
 class Chain {
-  protected $validators = array();
-  protected $errors = array();
+  protected $validators = [];
+  protected $errors = [];
   protected $translator = null;
-  protected $customErrors = array();
+  protected $customErrors = [];
   
-  public function appendValidator(Validator $validator) {
+  public function appendValidator(Validator $validator): void {
     $this->validators[] = $validator;
   }
   
-  public function prependValidator(Validator $validator) {
+  public function prependValidator(Validator $validator): void {
     array_unshift($this->validators, $validator);
   }
   
-  public function isValid($value, $breakOnFailure=false) {
-    $this->errors = array();
-    $this->customErrors = array();
+  public function isValid($value, bool $breakOnFailure=false): bool {
+    $this->errors = [];
+    $this->customErrors = [];
     $valid = true;
     
     foreach ($this->validators as $validator) {
@@ -34,11 +34,11 @@ class Chain {
     return $valid;
   }
   
-  public function getMessages(Translator $translator) {
-    $messages = array();
+  public function getMessages(Translator $translator): array {
+    $messages = [];
     
     foreach ($this->customErrors as $error) {
-      $messages[] = $translator->getValidationMessage(null, $error, array());
+      $messages[] = $translator->getValidationMessage(null, $error, []);
     }
     
     foreach ($this->validators as $validator) {
@@ -48,23 +48,23 @@ class Chain {
     return $messages;
   }
   
-  public function getErrors() {
+  public function getErrors(): array {
     $errors = $this->customErrors;
     
     foreach ($this->validators as $validator) {
       foreach ($validator->getErrors() as $error) {
-        $errors[] = array($validator, $error);
+        $errors[] = [$validator, $error];
       }
     }
     
     return $errors;
   }
   
-  public function addCustomError($error) {
+  public function addCustomError($error): void {
     $this->customErrors[] = $error;
   }
   
-  public function getValidators() {
+  public function getValidators(): array {
     return $this->validators;
   }
   

@@ -2,21 +2,14 @@
 
 namespace ultimo\validation\translate;
 
-class Translator implements \ultimo\validation\Translator {
-  
-  /**
-   * 
-   * Enter description here ...
-   * @var \ultimo\mvc\Translator
-   */
-  private $translator;
+class TranslatorAdapter implements \ultimo\validation\Translator {
+  protected $translator;
   
   public function __construct(\ultimo\translate\Translator $translator) {
     $this->translator = $translator;
   }
   
-  public function getValidationMessage(\ultimo\validation\Validator $validator=null, $error, array $variables) {
-    
+  public function getValidationMessage(\ultimo\validation\Validator $validator=null, $error, array $variables): string {
     if ($validator !== null) {
       $nameElems = explode('\\', get_class($validator));
       $className = array_pop($nameElems);

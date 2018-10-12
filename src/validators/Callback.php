@@ -3,15 +3,15 @@
 namespace ultimo\validation\validators;
 
 class Callback extends \ultimo\validation\Validator {
-  private $function;
-  private $args;
+  protected $function;
+  protected $args;
   
-  public function __construct($function, array $args=array()) {
+  public function __construct(callable $function, array $args=[]) {
     $this->function = $function;
     $this->args = $args;
   }
   
-  protected function valueIsValid($value) {
+  protected function valueIsValid($value): bool {
     $args = $this->args;
     array_unshift($args, $value);
     

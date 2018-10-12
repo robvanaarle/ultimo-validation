@@ -3,22 +3,21 @@
 namespace ultimo\validation\validators;
 
 class ImageType extends \ultimo\validation\Validator {
-  const INVALID_TYPE = 'invalid_type';
+  public const INVALID_TYPE = 'invalid_type';
   
-  private $imageTypes;
+  protected $imageTypes;
 
   public function __construct(array $imageTypes) {
     $this->imageTypes = $imageTypes;
   }
   
-  protected function valueIsValid($value) {
-    $extensions = array();
+  protected function valueIsValid($value): bool {
+    $extensions = [];
     foreach ($this->imageTypes as $type) {
       $extensions[] = \ultimo\graphics\gd\Image::getExtensionByType($type);
     }
     
-    
-    $this->setVariables(array('extensions' => implode(', ', $extensions)));
+    $this->setVariables(['extensions' => implode(', ', $extensions)]);
     
     if ($value === null || !$value instanceof \ultimo\net\http\php\sapi\UploadedFile) {
       return true;
@@ -34,8 +33,7 @@ class ImageType extends \ultimo\validation\Validator {
   }
   
   
-  
-  public function getImageTypes() {
+  public function getImageTypes(): array {
     return $this->imageTypes;
   }
 }

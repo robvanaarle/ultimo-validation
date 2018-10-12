@@ -12,12 +12,12 @@ class EmailAddressTest extends TestCase {
   }
   
   public function provideValidEmailAddresses() {
-    return array(
-      array('name@server.com'),
-      array('name.lastname@server.com'),
-      array('name@server.co.uk'),
-      array('name+label@server.com')
-    );
+    return [
+      ['name@server.com'],
+      ['name.lastname@server.com'],
+      ['name@server.co.uk'],
+      ['name+label@server.com']
+    ];
   }
   
   /**
@@ -25,16 +25,16 @@ class EmailAddressTest extends TestCase {
    */
   public function testEmailAddressIsValid($emailAddress) {
     $this->assertTrue($this->validator->isValid($emailAddress));
-    $this->assertSame(array(), $this->validator->getErrors());
+    $this->assertSame([], $this->validator->getErrors());
   }
   
   public function provideInvalidEmailAddresses() {
-    return array(
-      array('name@server'),
-      array('@server.com'),
-      array('name@server.c'),
-      array('name@weird@server.com')
-    );
+    return [
+      ['name@server'],
+      ['@server.com'],
+      ['name@server.c'],
+      ['name@weird@server.com']
+    ];
   }
   
   /**
@@ -42,6 +42,6 @@ class EmailAddressTest extends TestCase {
    */
   public function testEmailAddressIsInvalid($emailAddress) {
     $this->assertFalse($this->validator->isValid($emailAddress));
-    $this->assertSame(array(EmailAddress::INVALID_EMAILADDRESS), $this->validator->getErrors());
+    $this->assertSame([EmailAddress::INVALID_EMAILADDRESS], $this->validator->getErrors());
   }
 }

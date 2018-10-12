@@ -3,9 +3,9 @@
 namespace ultimo\validation\validators;
 
 class EmailAddress extends \ultimo\validation\Validator {
-  const INVALID_EMAILADDRESS = 'invalid_emailaddress';
+  public const INVALID_EMAILADDRESS = 'invalid_emailaddress';
   
-  public function valueIsValid($value) {
+  public function valueIsValid($value): bool {
     
     // First, we check that there's one @ symbol, 
     // and that the lengths are right.

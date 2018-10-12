@@ -3,11 +3,11 @@
 namespace ultimo\validation\validators;
 
 class RegEx extends \ultimo\validation\Validator {
-  private $regex;
-  private $negate;
-  private $error;
+  protected $regex;
+  protected $negate;
+  protected $error;
   
-  public function __construct($regex, $error, $negate=false) {
+  public function __construct(string $regex, string $error, bool $negate=false) {
     $this->regex = $regex;
     $this->error = $error;
     if ($negate) {
@@ -17,8 +17,7 @@ class RegEx extends \ultimo\validation\Validator {
     }
   }
   
-  protected function valueIsValid($value) {
-    
+  protected function valueIsValid($value): bool {
     $matches = preg_match($this->regex, $value);
     if (($matches == 0) != $this->negate) {
       $this->addError($this->error);

@@ -3,47 +3,47 @@
 namespace ultimo\validation;
 
 abstract class Validator {
-  private $defaultMessage = null;
-  private $errors = array();
-  private $variables = array();
+  protected $defaultMessage = null;
+  protected $errors = [];
+  protected $variables = [];
   
-  public function isValid($value) {
-    $this->variables = array('value' => $value);
-    $this->errors = array();
+  public function isValid($value): bool {
+    $this->variables = ['value' => $value];
+    $this->errors = [];
     return $this->valueIsValid($value);
   }
   
-  protected function addError($error) {
+  protected function addError(string $error): void {
     $this->errors[] = $error;
   }
   
-  public function setDefaultMessage($defaultMessage) {
+  public function setDefaultMessage(string $defaultMessage): void {
     $this->defaultMessage = $defaultMessage;
   }
   
-  public function getMessages(Translator $translator) {
-    $messages = array();
+  public function getMessages(Translator $translator): array {
+    $messages = [];
     foreach ($this->errors as $error) {
       $messages[] = $translator->getValidationMessage($this, $error, $this->variables);
     }
     return $messages;
   }
   
-  public function getErrors() {
+  public function getErrors(): array {
     return $this->errors;
   }
   
-  abstract protected function valueIsValid($value);
+  abstract protected function valueIsValid($value): bool;
   
-  public function getVariables() {
+  public function getVariables(): array {
     return $this->variables;
   }
   
-  protected function setVariables(array $variables) {
+  protected function setVariables(array $variables): void {
     $this->variables = array_merge($this->variables, $variables);
   }
   
-  protected function setVariable($name, $value) {
+  protected function setVariable(string $name, $value): void {
     $this->variables[$name] = $value;
   }
   

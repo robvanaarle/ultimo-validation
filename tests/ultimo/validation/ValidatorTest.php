@@ -14,7 +14,7 @@ class ValidatorTest extends TestCase {
          ->will($this->returnValue(true));
     
     $this->assertTrue($mock->isValid('value_to_test'));
-    $this->assertSame(array(), $mock->getErrors());
+    $this->assertSame([], $mock->getErrors());
   }
   
   public function testInvalidValueIsNotValidAndContainsErrors() {
@@ -38,13 +38,13 @@ class ValidatorTest extends TestCase {
            $method = $class->getMethod('addError');
            $method->setAccessible(true);
            
-           $method->invokeArgs($mock, array('result_error'));
+           $method->invokeArgs($mock, ['result_error']);
            
            return false;
          }));   
     $mock->isValid('value_to_test');
          
-    $this->assertSame(array('result_error'), $mock->getErrors());
+    $this->assertSame(['result_error'], $mock->getErrors());
   }
   
   public function testSubclassesCanAddAVariable() {
@@ -58,13 +58,13 @@ class ValidatorTest extends TestCase {
            $method = $class->getMethod('setVariable');
            $method->setAccessible(true);
            
-           $method->invokeArgs($mock, array('var_name', 42));
+           $method->invokeArgs($mock, ['var_name', 42]);
            
            return false;
          }));
     $mock->isValid('value_to_test');
     
-    $this->assertSame(array('value' => 'value_to_test', 'var_name' => 42), $mock->getVariables());
+    $this->assertSame(['value' => 'value_to_test', 'var_name' => 42], $mock->getVariables());
   }
   
   public function testSubclassesCanAddVariables() {
@@ -78,13 +78,13 @@ class ValidatorTest extends TestCase {
            $method = $class->getMethod('setVariables');
            $method->setAccessible(true);
            
-           $method->invokeArgs($mock, array(array('var_name' => 42)));
+           $method->invokeArgs($mock, [['var_name' => 42]]);
            
            return false;
          }));
     $mock->isValid('value_to_test');
     
-    $this->assertSame(array('value' => 'value_to_test', 'var_name' => 42), $mock->getVariables());
+    $this->assertSame(['value' => 'value_to_test', 'var_name' => 42], $mock->getVariables());
   }
 
 }

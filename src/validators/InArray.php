@@ -3,7 +3,7 @@
 namespace ultimo\validation\validators;
 
 class InArray extends \ultimo\validation\Validator {
-  const NOT_IN_ARRAY = 'not_in_array';
+  public const NOT_IN_ARRAY = 'not_in_array';
   
   protected $validValues;
   
@@ -11,7 +11,7 @@ class InArray extends \ultimo\validation\Validator {
     $this->validValues = $validValues;
   }
   
-  protected function valueIsValid($value) {
+  protected function valueIsValid($value): bool {
     if (!in_array($value, $this->validValues)) {
       $this->addError(self::NOT_IN_ARRAY);
       return false;

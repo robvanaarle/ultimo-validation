@@ -3,28 +3,31 @@
 namespace ultimo\validation\validators;
 
 class NumericValue extends \ultimo\validation\Validator {
+  public const TOO_LOW = 'too_low';
+  public const TOO_HIGH = 'too_high';
+  public const NOT_WHOLE = 'not_whole';
+  public const NOT_NUMERIC = 'not_numeric';
   
-  const TOO_LOW = 'too_low';
-  const TOO_HIGH = 'too_high';
-  const NOT_WHOLE = 'not_whole';
+  protected $min;
+  protected $max;
+  protected $whole;
   
-  private $min;
-  private $max;
-  private $whole;
-  
-  public function __construct($min, $max=null, $whole=false) {
+  public function __construct(?int $min, ?int $max=null, bool $whole=false) {
     $this->min = $min;
     $this->max = $max;
     $this->whole = $whole;
   }
   
-  protected function valueIsValid($value) {
-    $this->setVariables(array('min' => $this->min, 'max' => $this->max));
+  protected function valueIsValid($value): bool {
+    $this->setVariables(['min' => $this->min, 'max' => $this->max]);
     
-    if ($this->whole && (is_int($value) || !preg_match("/^-?[0-9]+$/", $value))) {
+    if (!is_numeric($value)) {
+      $this->addError(self::NOT_NUMERIC);
+      return false;
+    } else if ($this->whole && (is_int($value) || !preg_match("/^-?[0-9]+$/", $value))) {
       $this->addError(self::NOT_WHOLE);
       return false;
-    } if ($this->min !== null && $value < $this->min) {
+    } else if ($this->min !== null && $value < $this->min) {
       $this->addError(self::TOO_LOW);
       return false;
     } else if ($this->max !== null && $value > $this->max) {
@@ -34,15 +37,19 @@ class NumericValue extends \ultimo\validation\Validator {
     return true;
   }
   
-  public function getMin() {
+  public function getMin(): ?int {
     return $this->min;
   }
   
-  public function getMax() {
+  public function getMax(): ?int {
     return $this->max;
   }
   
-  public function getVariables() {
-    return array('min' => $this->min, 'max' => $this->max);
+  public function getWhole(): ?bool {
+    return $this->whole;
+  }
+  
+  public function getVariables(): array {
+    return ['min' => $this->min, 'max' => $this->max];
   }
 }

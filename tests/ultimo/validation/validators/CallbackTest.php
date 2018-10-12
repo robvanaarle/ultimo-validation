@@ -12,10 +12,10 @@ class CallbackTest extends TestCase {
          ->with($this->equalTo('value_to_test'), $this->equalTo('foo'), $this->equalTo(42))
          ->will($this->returnValue(true));
     
-    $validator = new Callback(array($mock, 'callback'), array('foo', 42));
+    $validator = new Callback([$mock, 'callback'], ['foo', 42]);
     
     $this->assertTrue($validator->isValid('value_to_test'));
-    $this->assertSame(array(), $validator->getErrors());
+    $this->assertSame([], $validator->getErrors());
   }
   
   public function testCallbackValidationIsInvalid() {
@@ -24,10 +24,10 @@ class CallbackTest extends TestCase {
          ->method('callback')
          ->will($this->returnValue('some_error'));
     
-    $validator = new Callback(array($mock, 'callback'));
+    $validator = new Callback([$mock, 'callback']);
     
     $this->assertFalse($validator->isValid('value_to_test'));
-    $this->assertSame(array('some_error'), $validator->getErrors());
+    $this->assertSame(['some_error'], $validator->getErrors());
   }
 }
 
