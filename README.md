@@ -7,7 +7,7 @@ Extensible validation library
 Allows validations to be chained. Several validators are supplied. Translation of validation messages is supported and this can be linked to Ultimo Translate.
 
 ## Requirements
-* PHP 5.3
+* PHP 7.1
 * Ultimo Translate (optional)
 
 ## Usage

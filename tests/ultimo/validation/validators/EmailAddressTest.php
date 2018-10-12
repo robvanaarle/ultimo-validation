@@ -2,7 +2,9 @@
 
 namespace ultimo\validation\validators;
 
-class EmailAddressTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class EmailAddressTest extends TestCase {
   protected $validator;
   
   public function setup() {

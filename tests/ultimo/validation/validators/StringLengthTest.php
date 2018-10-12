@@ -2,7 +2,9 @@
 
 namespace ultimo\validation\validators;
 
-class StringLengthTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class StringLengthTest extends TestCase {
   
   protected $validator;
   

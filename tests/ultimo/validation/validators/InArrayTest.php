@@ -2,7 +2,9 @@
 
 namespace ultimo\validation\validators;
 
-class InArrayTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class InArrayTest extends TestCase {
   
   protected $validator;
   

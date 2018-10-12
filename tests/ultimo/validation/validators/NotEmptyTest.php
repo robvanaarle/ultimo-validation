@@ -2,7 +2,9 @@
 
 namespace ultimo\validation\validators;
 
-class NotEmptyTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class NotEmptyTest extends TestCase {
   protected $validator;
   
   public function setup() {

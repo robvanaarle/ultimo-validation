@@ -2,7 +2,9 @@
 
 namespace ultimo\validation;
 
-class ValidatorTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class ValidatorTest extends TestCase {
   
   public function testValidValueIsValidAndContainsNoErrors() {
     $mock = $this->getMockForAbstractClass('\ultimo\validation\Validator');

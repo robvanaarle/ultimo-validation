@@ -2,9 +2,11 @@
 
 namespace ultimo\validation\validators;
 
-class CallbackTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class CallbackTest extends TestCase {
   public function testCallbackValidationIsValid() {
-    $mock = $this->getMock('stdClass', array('callback'));
+    $mock = $this->createMock(CallbackMock::class);
     $mock->expects($this->once())
          ->method('callback')
          ->with($this->equalTo('value_to_test'), $this->equalTo('foo'), $this->equalTo(42))
@@ -17,7 +19,7 @@ class CallbackTest extends \PHPUnit_Framework_TestCase {
   }
   
   public function testCallbackValidationIsInvalid() {
-    $mock = $this->getMock('stdClass', array('callback'));
+    $mock = $this->createMock(CallbackMock::class);
     $mock->expects($this->once())
          ->method('callback')
          ->will($this->returnValue('some_error'));
@@ -26,5 +28,11 @@ class CallbackTest extends \PHPUnit_Framework_TestCase {
     
     $this->assertFalse($validator->isValid('value_to_test'));
     $this->assertSame(array('some_error'), $validator->getErrors());
+  }
+}
+
+class CallbackMock {
+  function callback($value, ...$args) {
+    
   }
 }
